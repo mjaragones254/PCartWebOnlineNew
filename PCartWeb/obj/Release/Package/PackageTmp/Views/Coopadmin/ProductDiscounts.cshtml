@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Product Discounts";
+}
+
+<h2>Product Discounts</h2>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <label for="discountName" class="control-label col-md-2">Discount Name</label>
+        <div class="col-md-10">
+            <input type="text" id="discountName" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="discountPercent" class="control-label col-md-2">Discount Percent</label>
+        <div class="col-md-10">
+            <input type="number" id="discountPercent" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="discountDateStart" class="control-label col-md-2">Date Start</label>
+        <div class="col-md-10">
+            <input type="date" id="discountDateStart" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="discountDateEnd" class="control-label col-md-2">Date End</label>
+        <div class="col-md-10">
+            <input type="date" id="discountDateEnd" class="form-control" />
+        </div>
+    </div>
+
+    <table class="w3-table-all" border="0" height="360">
+        <tbody>
+            <tr>
+                <td>
+                    <b>Products to discount</b>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="discountProduct"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input id="btnDiscount" type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/CoopAdmin/AddDiscount.js"></script>
+

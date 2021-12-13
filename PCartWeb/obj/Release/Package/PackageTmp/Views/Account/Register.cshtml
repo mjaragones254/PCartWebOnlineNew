@@ -1,0 +1,131 @@
+﻿@model PCartWeb.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <head>
+        <link rel="stylesheet" href="~/Content/css/customStyle.css" />
+    </head>
+
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-md-12 custom-form-1">
+                <h4>Start your shopping by signing up!</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @ViewBag.Message
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "Email", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { placeholder = "Firstname", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Lastname, new { htmlAttributes = new { placeholder = "Lastname", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Lastname, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" name="ImageFile" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { placeholder = "Contact Number", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { placeholder = "Home Address", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Bdate, new { htmlAttributes = new { placeholder = "Birthdate", @class = "form-control textbox-n", type = "text", onfocus = "(this.type='date')" } })
+                                @Html.ValidationMessageFor(model => model.Bdate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(vm => vm.Gender, Model.GenderList, "-Please Select-", htmlAttributes: new { @class = "form-control" })
+                                <p class="text-danger">@ViewBag.GenderError</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Password", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { placeholder = "Confirm Password", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.HiddenFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.HiddenFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" value="Register" class="btnSubmit" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCCnmMReV03W96lvqJVwbG7nFOTkuUDaX8"></script>
+<script type="text/javascript">
+    google.maps.event.addDomListener(window, 'load', function () {
+        var options = {
+            componentRestrictions: { country: "ph" }
+        };
+
+        var input = document.getElementById('Address');
+        var places = new google.maps.places.Autocomplete(input, options);
+        google.maps.event.addListener(places, 'place_changed', function () {
+            var place = places.getPlace();
+            $("#Longitude").val("" + place.geometry.location.lng());
+            $("#Latitude").val("" + place.geometry.location.lat());
+        });
+
+    });
+</script>

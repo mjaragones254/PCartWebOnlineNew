@@ -1,0 +1,88 @@
+﻿@using PCartWeb.Models
+@model dynamic
+@{
+    ViewBag.Title = "Index";
+    var ewallet = "";
+    var membern = "";
+    var productn = "";
+    var comm = "";
+    var coopname = "";
+    foreach (UserViewModel am in Model.Userview)
+    {
+        coopname = am.Firstname;
+        ewallet = am.Ewallet.ToString();
+        membern = am.MembersNum.ToString();
+        productn = am.ProductNum.ToString();
+        comm = am.Commission.ToString();
+    }
+}
+
+<div class="container">
+    <h2 style="margin: 25px 0 25px 0;">@coopname</h2>
+
+    <div class="container-fluid" style="padding: 20px; margin: 20px; border: solid 10px steelblue; border-radius: 5px;">
+        <div class="row gx-5">
+            <div class="col px-md-4">
+                <h4>Pcart E-Wallet</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col px-md-5">
+                Amount: <b>₱ <a>@ewallet</a></b>
+            </div>
+            <div class="col-md-2">
+                <b><a href="#"><img src="~/Images/top-up.png" name="top-up icon" width="40" alt="top-up icon" />&nbsp;Top-Up</a></b>
+            </div>
+            <div class="col-md-2">
+                <b><a href="#"><img src="~/Images/withdraw.png" name="withdraw icon" width="32" alt="withdraw icon" />&nbsp;&nbsp;Withdraw</a></b>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col px-md-4">
+                <b>Status:</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col px-md-5">
+                Members: <a>@membern</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col px-md-5">
+                Products: <a>@productn</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col px-md-5">
+                Commission Rate: <a>@comm</a> %
+            </div>
+        </div>
+    </div>
+
+    <h4>Existing Products</h4>
+    <hr />
+
+
+    <div class="container">
+        <div class="row" id="row1">
+            @foreach (ProductDetailsModel prod in Model.Productview)
+            {
+                <div class="col-xl-3 col-md-10">
+                    <div class="card shadow p-3 mb-5 bg-body rounded">
+                        <img src="@Url.Content(prod.Product_image)" class="card-img-top" height="200" alt="...">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" style="background-color: steelblue; color: white;">@prod.Product_price</li>
+                        </ul>
+                        <button class="card-body btn btn-light" onclick="location.href = '@Url.Action("ProdDetails", "Coopadmin", new { id = prod.Id })'">
+                            <h5 class="card-title">@prod.Product_Name</h5>
+                            <p class="card-text">@prod.Product_desc</p>
+                        </button>
+                    </div>
+                    <br />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

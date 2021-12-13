@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PCartWeb.Models.ViewDiscList>
+
+@{
+    ViewBag.Title = "ViewDiscountList";
+}
+
+<h2>ViewDiscountList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateDiscount")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Percentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Updated_at)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Percentage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Updated_at)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditDiscount", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "DeleteDiscount", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

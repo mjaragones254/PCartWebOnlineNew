@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PCartWeb.Models.ExternalImages>
+
+@{
+    ViewBag.Title = "EditProductList";
+}
+
+<h2>EditProductList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_image)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Content(item.Product_image)" width="200" height="200" />
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteEditImage", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<button type="button" onclick="location.href='@Url.Action("EditProductImage", "Coopadmin")'" class="btn btn-primary">Add Image</button>
+<button type="button" class="btn btn-success" onclick="location.href = '@Url.Action("ViewListProduct", "Coopadmin")'">Return to Home</button>

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<PCartWeb.Models.ViewListProd>
+
+@{
+    ViewBag.Title = "DisplayItems";
+}
+<head>
+    <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+    <link href="~/Style/ui.css" rel="stylesheet" />
+    <link href="~/Style/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+</head>
+<br />
+<nav class="navbar navbar-main navbar-expand-lg navbar-light">
+    <div class="container">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="main_nav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link pl-0" data-toggle="dropdown" href="#"><strong> <i class="fa fa-bars"></i> &nbsp  All category</strong></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Foods and Drink</a>
+                        <a class="dropdown-item" href="#">Home interior</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Category 1</a>
+                        <a class="dropdown-item" href="#">Category 2</a>
+                        <a class="dropdown-item" href="#">Category 3</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Fashion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Supermarket</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Electronics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Baby &amp Toys</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Fitness sport</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Clothing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Furnitures</a>
+                </li>
+            </ul>
+        </div> <!-- collapse .// -->
+    </div> <!-- container .// -->
+</nav>
+<section class="section-name  padding-y-sm">
+    <header class="section-heading">
+        <a href="#" class="btn btn-outline-primary float-right">See all</a>
+        <h3 class="section-title">Popular products</h3>
+    </header><!-- sect-heading -->
+    <div class="container">
+        <!-- ========================= PRODUCT ITEMS STARTS HERE  ========================= -->
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+                    <div class="card card-product-grid">
+                        <div class="card-body">
+                            <div href="#" onclick="location.href = '@Url.Action("ItemDetails", "Home", new { id = item.Id })'" >
+                                <a href="#" class="img-wrap"> <img src="@Url.Content(item.Product_image)"> </a>
+                                <figcaption class="info-wrap">
+                                    <a href="#" class="title">@Html.DisplayFor(modelItem => item.Product_name)</a>
+                                    <div class="price mt-1">&#8369; @Html.DisplayFor(modelItem => item.Product_price)</div> <!-- price-wrap.// -->
+                                </figcaption>
+                            </div>
+                            <div class="price mt-1">
+                                <a href="@Url.Action("AddToCart", "Home", new { id = item.Id })" class="btn btn-info">Add to Cart</a>
+                                @if (item.Wish == true)
+                                {
+                                    <img src="~/Images/heartred.png" onclick="location.href='@Url.Action("AddToWishlist", "Home", new { id = item.Id })'" style="cursor:pointer;" height="25" width="25" />
+                                }
+                                else
+                                {
+                                    <img src="~/Images/heart.png" onclick="location.href='@Url.Action("AddToWishlist", "Home", new { id = item.Id })'" style="cursor:pointer;" height="25" width="25" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- col.// -->
+            }
+        </div> <!-- col.// -->
+    </div> <!-- row.// -->
+    <!-- container // -->
+</section>

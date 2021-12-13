@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PCartWeb.Models.CartViewMdoel>
+
+@{
+    ViewBag.Title = "DisplayCart";
+}
+
+<h2>DisplayCart</h2>
+
+<head>
+    <link rel="stylesheet" href="~/Content/css/customStyle.css">
+</head>
+<table class="table text-center">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subtotal)
+        </th>
+        <th></th>
+    </tr>
+    <tbody id="vwCartItems">
+        <tr>
+            <td colspan="2"><b class="w3-text-red">- Cart is empty -</b> </td>
+        </tr>
+    </tbody>
+
+</table>
+
+<input id="btnDelete" type="submit" value="Delete" class="btn btn-danger" />
+<input value="0" disabled id="total" />
+<input id="btnCheckout" type="submit" value="Checkout" class="btn btn-primary" />
+<script src="~/Scripts/AdminScript/Cart.js"></script>

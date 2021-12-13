@@ -1,0 +1,127 @@
+﻿@model PCartWeb.Models.CoopViewModel
+
+@{
+    ViewBag.Title = "DetailsCoopReq";
+}
+
+<h2>DetailsCoopReq</h2>
+
+<div>
+    <h4>CoopViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dt>
+            <img src="@Url.Content(Model.Image)" width="150" height="150" />
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoopName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoopAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoopAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoopContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoopContact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_at)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated_at)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button type="button" onclick="location.href='@Url.Action("ApproveAccntReq", "Admin", new { id = Model.Id })'" class="btn btn-primary">Approve</button>
+    <br /><br />
+    @Html.ActionLink("Back to List", "ViewPendingCoop")
+</p>
